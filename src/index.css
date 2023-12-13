@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+body {
+    @apply bg-base text-white font-poppins scrollbar-hide h-[2000px] pb-[500px]
+}
+.sticky {
+    @apply bg-black/60 backdrop-blur-md fixed border-b border-b-neutral-600 pt-0
+}
+.active {
+    @apply text-primary
+}
+.active span {
+    @apply right-0
+}
