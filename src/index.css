@@ -5,7 +5,7 @@
 
 :root,
 body {
-    @apply bg-base text-white font-poppins scrollbar-hide h-[2000px] pb-[500px]
+    @apply bg-base text-white font-poppins scrollbar-hide pb-[30px]
 }
 .sticky {
     @apply bg-black/60 backdrop-blur-md fixed border-b border-b-neutral-600 pt-0
