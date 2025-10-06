@@ -172,7 +172,7 @@ const MovieRecommendationSPK = () => {
       `}</style>
 
             <Header />
-            <div className="w-[90%] lg:w-[85%] mx-auto pt-14">
+            <div className="w-[90%] lg:w-[85%] mx-auto">
                 {isAuthenticated && user && (
                     <div className="pt-20">
                         <img
