@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import MyNavLink from "./MyNavLink"
 import { useEffect, useRef } from "react"
 import { useAuth0 } from "@auth0/auth0-react";
@@ -7,7 +7,8 @@ import Button from "./Button";
 const Header = () => {
 
     // login
-    const { loginWithPopup, isAuthenticated, logout } = useAuth0();
+    const { loginWithPopup, isAuthenticated, logout, user } = useAuth0();
+    const navigate = useNavigate();
 
     const header = useRef(null)
 
@@ -16,6 +17,28 @@ const Header = () => {
             header.current.classList.toggle('sticky', window.scrollY > 0)
         })
     }, [])
+
+    // Redirect ke dashboard HANYA setelah login pertama kali
+    useEffect(() => {
+        // Cek apakah baru saja login (belum ada flag di sessionStorage)
+        const hasRedirectedBefore = sessionStorage.getItem('hasRedirectedAfterLogin');
+        
+        if (isAuthenticated && user && !hasRedirectedBefore) {
+            console.log('User authenticated, redirecting to dashboard...');
+            sessionStorage.setItem('hasRedirectedAfterLogin', 'true');
+            navigate('/dashboard');
+        }
+    }, [isAuthenticated, user, navigate]);
+
+    // Handle logout dengan konfigurasi yang benar
+    const handleLogout = () => {
+        sessionStorage.removeItem('hasRedirectedAfterLogin'); // Hapus flag saat logout
+        logout({
+            logoutParams: {
+                returnTo: window.location.origin
+            }
+        });
+    };
 
     return (
         <header
@@ -53,9 +76,6 @@ const Header = () => {
                     "
                 >
 
-                    {/* <MyNavLink to='/'>
-                        Home
-                    </MyNavLink> */}
                     <MyNavLink to='/movies'>
                         Movies
                     </MyNavLink>
@@ -68,12 +88,9 @@ const Header = () => {
                                 <MyNavLink to='/dashboard'>
                                     Dashboard
                                 </MyNavLink>
-                                <Button variant='sm' onClick={logout}>
+                                <Button variant='sm' onClick={handleLogout}>
                                     Logout
                                 </Button>
-                                {/* <MyNavLink isButton={true} onClick={logout}>
-                                    <BiLogOut className="ml-2" size={23} />
-                                </MyNavLink> */}
                             </>
                         ) : (
                             <Button variant='sm' onClick={loginWithPopup}>
