@@ -180,7 +180,7 @@ const MovieRecommendationSPK = () => {
                             width={100}
                             src={user.picture}
                             alt="User Avatar"
-                        />
+                        />  
                         <h1 className="mt-3 text-white text-2xl md:text-3xl font-semibold">
                             Welcome <span className="text-primary">{user.name}</span>
                         </h1>
