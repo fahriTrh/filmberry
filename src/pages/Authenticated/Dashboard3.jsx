@@ -368,7 +368,7 @@ const MovieRecommendationTOPSIS = () => {
                 className="mt-4 bg-[#E50914] hover:bg-[#b8070f] text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center gap-2"
               >
                 <Heart className="w-5 h-5 fill-white" />
-                Daftar Favorit ({userFavorites.length})
+                Daftar Tonton ({userFavorites.length})
               </button>
             </div>
           )}

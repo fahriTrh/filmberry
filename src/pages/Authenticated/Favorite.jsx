@@ -78,7 +78,7 @@ const Favorites = () => {
                         <div className="flex items-center justify-between mb-6">
                             <h2 className="text-2xl font-bold flex items-center gap-2 text-white">
                                 <Heart className="w-7 h-7 text-[#E50914] fill-[#E50914]" />
-                                Film Favorit Saya
+                                Daftar Tonton Saya
                             </h2>
                             {favorites.length > 0 && (
                                 <button
