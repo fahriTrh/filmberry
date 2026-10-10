@@ -5,16 +5,18 @@ on:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
-  schedule:
-    - cron: '0 0 * * 1' # Opsional: Berjalan otomatis tiap hari Senin
 
 jobs:
   scan:
-    uses: OWNER/dependency-scanner/.github/workflows/dependency-scan.yml@main
-    with:
-      mode: local
-      scanner-repo: OWNER/dependency-scanner # Ganti OWNER dengan username GitHub Anda
-      upload-sarif: true                     # Mengaktifkan upload otomatis ke tab Security
+    runs-on: ubuntu-latest
     permissions:
       contents: read
-      security-events: write                 # Wajib agar GitHub diizinkan menerima laporan SARIF
+      security-events: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Request SARIF from Scanner App
+        run: |
+          echo "Konfigurasi atau skrip curl ke scanner Anda di sini"
