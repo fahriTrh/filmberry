@@ -1,0 +1,20 @@
+name: Dependency Security Scan
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  schedule:
+    - cron: '0 0 * * 1' # Opsional: Berjalan otomatis tiap hari Senin
+
+jobs:
+  scan:
+    uses: OWNER/dependency-scanner/.github/workflows/dependency-scan.yml@main
+    with:
+      mode: local
+      scanner-repo: OWNER/dependency-scanner # Ganti OWNER dengan username GitHub Anda
+      upload-sarif: true                     # Mengaktifkan upload otomatis ke tab Security
+    permissions:
+      contents: read
+      security-events: write                 # Wajib agar GitHub diizinkan menerima laporan SARIF
