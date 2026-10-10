@@ -8,15 +8,11 @@ on:
 
 jobs:
   scan:
-    runs-on: ubuntu-latest
+    uses: fahriTrh/dependency-scanner/.github/workflows/dependency-scan.yml@main
+    with:
+      mode: local
+      scanner-repo: fahriTrh/dependency-scanner
+      upload-sarif: true
     permissions:
       contents: read
       security-events: write
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Request SARIF from Scanner App
-        run: |
-          echo "Konfigurasi atau skrip curl ke scanner Anda di sini"
