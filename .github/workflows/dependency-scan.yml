@@ -8,7 +8,7 @@ on:
 
 jobs:
   scan:
-    uses: fahriTrh/dependency-scanner/.github/workflows/dependency-scan.yml@master
+    uses: fahriTrh/dependency-scanner/.github/workflows/dependency-scan.yml@main
     with:
       mode: local
       scanner-repo: fahriTrh/dependency-scanner
